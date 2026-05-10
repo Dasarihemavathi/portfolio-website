@@ -76,14 +76,7 @@ def recommend_projects(profile, limit=4):
         score += 2 if difficulty_match else 0
 
         if score:
-            scored.append(
-                {
-                    **project,
-                    "score": score,
-                    "matched_skills": sorted(skill_matches),
-                    "matched_interests": sorted(interest_matches),
-                }
-            )
+            scored.append(format_project(project, score, skill_matches, interest_matches))
 
     scored.sort(key=lambda item: item["score"], reverse=True)
     return scored[:limit] or fallback_projects(domain, difficulty, limit)
@@ -96,5 +89,18 @@ def fallback_projects(domain, difficulty, limit):
         if (not domain or project["domain"].lower() == domain)
         and (not difficulty or project["difficulty"].lower() == difficulty)
     ]
-    return [{**project, "score": 0, "matched_skills": [], "matched_interests": []} for project in filtered[:limit]]
+    return [format_project(project, 0, [], []) for project in filtered[:limit]]
 
+
+def format_project(project, score, matched_skills, matched_interests):
+    return {
+        "title": project["title"],
+        "domain": project["domain"],
+        "difficulty": project["difficulty"],
+        "skills": sorted(project["skills"]),
+        "interests": sorted(project["interests"]),
+        "summary": project["summary"],
+        "score": score,
+        "matched_skills": sorted(matched_skills),
+        "matched_interests": sorted(matched_interests),
+    }

@@ -38,7 +38,7 @@ function renderProjects(projects) {
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const response = await fetch("/api/recommend", {
+  const response = await fetch("/api/recommend/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(formToObject(form)),
@@ -48,4 +48,3 @@ form.addEventListener("submit", async (event) => {
 });
 
 form.dispatchEvent(new Event("submit"));
-

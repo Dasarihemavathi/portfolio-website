@@ -13,7 +13,7 @@ A web-based hiring workflow app for managing candidates, interview rounds, feedb
 ## Tech Stack
 
 - Python
-- Flask
+- Django
 - HTML
 - CSS
 - JavaScript
@@ -26,7 +26,8 @@ A web-based hiring workflow app for managing candidates, interview rounds, feedb
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-python app.py
+python manage.py migrate
+python manage.py runserver 5001
 ```
 
 Then open:
@@ -37,19 +38,13 @@ http://127.0.0.1:5001
 
 ## MySQL Setup
 
-Create the database tables with:
-
-```bash
-mysql -u root -p < schema.sql
-```
-
-Then set these environment variables before running the app:
+Set these environment variables before running migrations:
 
 ```powershell
 $env:DB_HOST="localhost"
 $env:DB_USER="root"
 $env:DB_PASSWORD="your_password"
 $env:DB_NAME="interview_tracker"
-python app.py
+python manage.py migrate
+python manage.py runserver 5001
 ```
-

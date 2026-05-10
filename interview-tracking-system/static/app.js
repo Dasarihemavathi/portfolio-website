@@ -62,7 +62,7 @@ function renderCandidates(candidates) {
     });
 
     statusSelect.addEventListener("change", async () => {
-      await requestJson(`/api/candidates/${candidate.id}/status`, {
+      await requestJson(`/api/candidates/${candidate.id}/status/`, {
         method: "PATCH",
         body: JSON.stringify({ status: statusSelect.value }),
       });
@@ -77,7 +77,7 @@ function renderCandidates(candidates) {
 
     feedbackForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      await requestJson(`/api/candidates/${candidate.id}/feedback`, {
+      await requestJson(`/api/candidates/${candidate.id}/feedback/`, {
         method: "POST",
         body: JSON.stringify(formToObject(feedbackForm)),
       });
@@ -91,14 +91,14 @@ function renderCandidates(candidates) {
 }
 
 async function loadDashboard() {
-  const data = await requestJson("/api/dashboard");
+  const data = await requestJson("/api/dashboard/");
   renderMetrics(data);
 }
 
 async function loadAll() {
   const [dashboard, candidates] = await Promise.all([
-    requestJson("/api/dashboard"),
-    requestJson("/api/candidates"),
+    requestJson("/api/dashboard/"),
+    requestJson("/api/candidates/"),
   ]);
   renderMetrics(dashboard);
   renderCandidates(candidates);
@@ -107,7 +107,7 @@ async function loadAll() {
 document.querySelector("#candidateForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   const form = event.currentTarget;
-  await requestJson("/api/candidates", {
+  await requestJson("/api/candidates/", {
     method: "POST",
     body: JSON.stringify(formToObject(form)),
   });
@@ -118,4 +118,3 @@ document.querySelector("#candidateForm").addEventListener("submit", async (event
 document.querySelector("#refreshBtn").addEventListener("click", loadAll);
 
 loadAll();
-

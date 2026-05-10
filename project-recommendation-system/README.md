@@ -12,7 +12,7 @@ A rule-based recommendation system that suggests project ideas from a user's ski
 ## Tech Stack
 
 - Python
-- Flask
+- Django
 - HTML
 - CSS
 - JavaScript
@@ -23,7 +23,7 @@ A rule-based recommendation system that suggests project ideas from a user's ski
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-python app.py
+python manage.py runserver 5002
 ```
 
 Then open:
@@ -31,4 +31,3 @@ Then open:
 ```text
 http://127.0.0.1:5002
 ```
-
