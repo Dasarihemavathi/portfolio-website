@@ -2,6 +2,14 @@
 
 A rule-based recommendation system that suggests project ideas from a user's skills, interests, preferred domain, and difficulty level.
 
+## Live Demo
+
+GitHub Pages static demo:
+
+```text
+https://dasarihemavathi.github.io/portfolio-website/project-recommendation-system/
+```
+
 ## Features
 
 - Collects user skills, interests, domain, and difficulty
