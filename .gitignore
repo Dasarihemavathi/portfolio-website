@@ -1,6 +1,0 @@
-__pycache__/
-*.pyc
-*.db
-snake_scores.db
-.DS_Store
-Thumbs.db
